@@ -76,7 +76,7 @@ const Home: NextPage = () => {
           <p className="my-2 font-medium">
             {isClient && `Current contract balance: 6.2 ETH`}{" "}
           </p>
-          <p className="my-2 font-medium">Here you can deposit to our Faucet</p>
+          <p className="my-2 font-medium">Here you can deposit to our Faucet ${contractBalance?.formatted}</p>
         </div>
 
         {connectedAddress ? (
