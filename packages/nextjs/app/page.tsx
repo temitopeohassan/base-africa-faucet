@@ -3,9 +3,8 @@
 import { useEffect, useState } from "react";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
 import type { NextPage } from "next";
-import { formatEther } from "viem";
 import { useAccount, useBalance } from "wagmi";
-import { Address, AddressInput } from "~~/components/scaffold-eth";
+import { AddressInput } from "~~/components/scaffold-eth";
 import { notification } from "~~/utils/scaffold-eth";
 
 const Home: NextPage = () => {
