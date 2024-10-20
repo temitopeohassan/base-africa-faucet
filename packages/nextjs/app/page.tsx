@@ -6,7 +6,6 @@ import type { NextPage } from "next";
 import { formatEther } from "viem";
 import { useAccount, useBalance } from "wagmi";
 import { Address, AddressInput } from "~~/components/scaffold-eth";
-import { useScaffoldEventHistory } from "~~/hooks/scaffold-eth";
 import { notification } from "~~/utils/scaffold-eth";
 
 const Home: NextPage = () => {
@@ -24,13 +23,6 @@ const Home: NextPage = () => {
     watch: true,
   });
 
-  const { data: withdrawHistory } = useScaffoldEventHistory({
-    contractName: "Faucet",
-    eventName: "Withdrawal",
-    blockData: true,
-    fromBlock: BigInt(process.env.NEXT_PUBLIC_DEPLOY_BLOCK || "0"),
-    watch: true,
-  });
 
   const { data: contractBalance } = useBalance({
     address: process.env.NEXT_PUBLIC_FAUCET_CONTRACT_ADDRESS,
@@ -110,20 +102,6 @@ const Home: NextPage = () => {
           <ConnectButton />
         )}
 
-        <h1 className="text-center mt-10">
-          <span className="block text-2xl mb-2">Withdraw History</span>
-        </h1>
-        <ul>
-          {withdrawHistory &&
-            withdrawHistory.map((transaction, index) => (
-              <li key={index} className="mt-2">
-                <div className="flex justify-center items-center space-x-2">
-                  {formatEther(transaction?.args?.[1]).toString()} ETH was sent to &nbsp;
-                  <Address address={transaction?.args?.[0]} />
-                </div>
-              </li>
-            ))}
-        </ul>
       </div>
     </>
   );
